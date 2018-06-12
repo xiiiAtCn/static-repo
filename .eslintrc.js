@@ -30,7 +30,7 @@ module.exports = {
         ],
         "semi": [
             "error",
-            "always"
+            "never"
         ],
         "no-console": 0
     }
