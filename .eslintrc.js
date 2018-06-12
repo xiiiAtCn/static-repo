@@ -6,6 +6,7 @@ module.exports = {
     },
     "extends": "eslint:recommended",
     "parserOptions": {
+        "ecmaVersion": 6,
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
             "jsx": true
@@ -30,6 +31,7 @@ module.exports = {
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "no-console": 0
     }
 };
