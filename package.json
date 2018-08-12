@@ -1,19 +1,25 @@
 {
-    "name": "boilerplate",
-    "version": "1.0.0",
+    "name": "static-repo",
+    "version": "0.0.1",
     "main": "index.js",
     "author": "lungern <xiii.at.cn@gmail.com>",
     "license": "MIT",
-    "dependencies": {},
+    "dependencies": {
+        "express": "^4.16.3"
+    },
     "scripts": {
         "customize": "npm run test",
         "test": "echo hello && exit 0",
         "lint": "eslint ./ --cache --ignore-pattern .gitignore"
     },
-    "pre-commit": ["lint"],
+    "pre-commit": [
+        "lint"
+    ],
     "devDependencies": {
         "eslint": "^4.19.1",
         "eslint-plugin-react": "^7.9.1",
         "pre-commit": "^1.2.2"
-    }
+    },
+    "description": "resource provider",
+    "repository": "https://github.com/xiiiAtCn/static-repo.git"
 }
