@@ -5,12 +5,15 @@
     "author": "lungern <xiii.at.cn@gmail.com>",
     "license": "MIT",
     "dependencies": {
-        "express": "^4.16.3"
+        "express": "^4.16.3",
+        "iview": "^3.0.0",
+        "vue": "^2.5.17"
     },
     "scripts": {
         "customize": "npm run test",
         "test": "echo hello && exit 0",
-        "lint": "eslint ./ --cache --ignore-pattern .gitignore"
+        "lint": "eslint ./src ./server --fix --cache --ignore-pattern .gitignore",
+        "dev": "node index.js"
     },
     "pre-commit": [
         "lint"

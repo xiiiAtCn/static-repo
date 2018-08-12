@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/iview.css">
+    <title>Document</title>
+    <style>
+        #app {
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .ivu-form-item-content {
+            min-width: 150px;
+        }
+        
+        .divide-line {
+            height: 2px;
+            background-color: aliceblue;
+            margin-top: 20px;
+        }
+        
+        .table-action {
+            margin-top: 20px;
+        }
+
+        .table-wrapper {
+            margin: 20px auto;
+        }
+
+        .modal-form {
+            margin: 20px 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="header"></div>
+        <i-form
+            inline
+            :label-width="90"
+            position="right"
+        >
+        <row>
+            <form-item label="平台：">
+                <i-select 
+                    multiple>
+                    <i-option 
+                        v-for="(item, index) in platformList" 
+                        :key="index" 
+                        :value="item.key">{{item.name}}</i-option>
+                </i-select>
+            </form-item>
+            <form-item label="类型：">
+                <i-select
+                    multiple>
+                    <i-option 
+                    v-for="(item, index) in fileTypeList"
+                    :key="index"
+                    :value="item.key">{{item.name}}</i-option>
+                </i-select>
+            </form-item>
+            <form-item :label-width="120" label="当前路径下搜索：">
+                <i-switch>
+                    <span slot="open">是</span>
+                    <span slot="close">否</span>
+                </i-switch>
+            </form-item>
+            <form-item :label-width="20">
+                <i-input placeholder="文件名/描述/保存路径"></i-input>
+            </form-item>
+            <form-item :label-width="20">
+                <i-button type="primary">搜索</i-button>
+            </form-item>
+        </row>
+        </i-form>
+        <div class="divide-line"></div>
+        <div class="table-action">
+            <i-button @click="uploadNew">上传</i-button>
+        </div>
+        <i-table 
+            class="table-wrapper" 
+            :data="dataSource"
+            :columns="columns">
+
+        </i-table>
+        <modal 
+            width="700"
+            v-model="uploadShow"
+            title="上传">
+            <i-form :label-width="90" class="modal-form">
+                <form-item
+                    label="文件名："
+                >
+                    <i-input></i-input>
+                </form-item>
+                <form-item label="平台：">
+                    <i-select 
+                        multiple>
+                        <i-option 
+                            v-for="(item, index) in platformList" 
+                            :key="index" 
+                            :value="item.key">{{item.name}}</i-option>
+                    </i-select>
+                </form-item>
+                <form-item label="版本：">
+                    <i-input></i-input>
+                </form-item>
+                <form-item label="描述：">
+                    <i-input type="textarea" :rows="4"></i-input>
+                </form-item>
+                <form-item label="文件：">
+                    <Upload
+                        multiple
+                        type="drag"
+                        action="/file/upload"
+                        >
+                        <div style="padding: 20px 0">
+                            <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+                            <p>点击或拖拽上传</p>
+                        </div>
+                    </Upload>
+                </form-item>
+            </i-form>
+        </modal>
+    </div>
+</body>
+<script src="/js/vue.js"></script>
+<!-- <script src="/js/vue.min.js"></script> -->
+<script src="/js/iview.js"></script>
+<!-- <script src="/js/iview.min.js"></script> -->
+<script>
+    new Vue({
+        el: '#app',
+        data () {
+            return {
+                breadList: [],
+                fileTypeList: [],
+                platformList: [
+                    {
+                        name: 'Windows',
+                        key: 'win'
+                    },
+                    {
+                        name: 'MAC',
+                        key: 'mac'
+                    },
+                    {
+                        name: 'Linux',
+                        key: 'lin'
+                    },
+                    {
+                        name: 'IOS',
+                        key: 'ios'
+                    },
+                    {
+                        name: 'Android',
+                        key: 'and'
+                    }
+                ],
+                columns: [
+                    {
+                        title: '文件名',
+                        key: '',
+                        render: () => {
+
+                        }
+                    },
+                    {
+                        title: '描述',
+                        key: ''
+                    },
+                    {
+                        title: '平台',
+                        key: ''
+                    },
+                    {
+                        title: '版本',
+                        key: ''
+                    },
+                    {
+                        title: '上传时间',
+                        key: ''
+                    },
+                    {
+                        title: '操作',
+                        render: () => {
+
+                        }
+                    }
+                ],
+                dataSource: [],
+                uploadShow: false
+            }
+        },
+        methods: {
+            uploadNew () {
+                this.uploadShow = true
+            }
+        }
+    })
+</script>
+</html>
