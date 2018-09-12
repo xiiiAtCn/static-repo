@@ -13,6 +13,11 @@ app.get('/', () => {
     return 
 })
 
+app.post('/', (req, res) => {
+    res.setHeader('Content-Type', 'text/html')
+    res.sendFile(`${__dirname}/dist/index.html`)
+})
+
 let port = 4500
 
 function isInUse(tmp, callback) {
