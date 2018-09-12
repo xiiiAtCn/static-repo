@@ -17,11 +17,11 @@ router.post('/upload', (req, res) => {
     })
 
     req.on('end', function() {
-        let contentType = req.headers["content-type"]
+        let contentType = req.headers['content-type']
         let boundary = contentType.split('=')[1]
         let string = chunk.toString('utf8')
-        let fileName = string.slice(8 + boundary.length, string.indexOf('\r\n\r\n')).replace(/"/g, "").split('\r\n')[0].split(';').map(e => e.trim())[2].split('=')[1]
-        var rems = [];
+        let fileName = string.slice(8 + boundary.length, string.indexOf('\r\n\r\n')).replace(/"/g, '').split('\r\n')[0].split(';').map(e => e.trim())[2].split('=')[1]
+        let rems = []
 
         //根据\r\n分离数据和报头
         for(let i=0; i < chunk.length; i++){
