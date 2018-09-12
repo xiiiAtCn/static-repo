@@ -32,7 +32,13 @@ router.post('/upload', (req, res) => {
             }
         }
         let fileData = chunk.slice(rems[3] + 2, rems[rems.length - 2])
-        fs.writeFile( path.resolve(__dirname, '../../resource',fileName), fileData, function () {
+        fs.writeFile( path.resolve(__dirname, '../../resource',fileName), fileData, function (err) {
+            if (err) {
+                console.error(err)
+                res.status(500)
+                res.send('error happens')
+                return
+            }
 
             res.end('finish')
         }) 
